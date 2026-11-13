@@ -1,0 +1,9 @@
+# Informes y registros de cada ejecucion (contienen datos del equipo)
+Informes/
+# Compilacion
+compilar/obj/
+dist/
+*.zip
+# Sistema
+Thumbs.db
+desktop.ini

@@ -1,0 +1,41 @@
+ReparaWin11 - diagnostico y reparacion de Windows 11
+=====================================================
+
+COMO SE USA
+1. Doble clic en Iniciar_ReparaWin11.cmd y pulsa "Si" en la ventana de Windows (administrador).
+2. "1. Diagnosticar todo": mira 33 areas y las pone en verde, amarillo o rojo. No cambia nada.
+3. "2. Reparar lo marcado": repara lo marcado (se marca solo lo que sale mal).
+   O "Reparar todo": diagnostica y repara de una vez todo lo que salga mal.
+4. Al terminar: "Abrir informe" (HTML con todo lo que se hizo) y "Abrir copias".
+
+QUE HACE AL REPARAR (actua de verdad sobre Windows)
+- Solucionadores REALES de Microsoft (primeros de la lista): Windows Update, BITS, impresoras,
+  sonido, red, busqueda, hardware, aplicaciones, energia, Bluetooth y video. Se ejecutan con
+  Invoke-TroubleshootingPack y aplican sus reparaciones (los scripts rojos y naranjas del libro).
+  Red de seguridad: antes copia lo que cada uno borra o cambia; despues los scripts de esquiva
+  probados en el laboratorio deshacen su dano conocido (callejones CJ-xx).
+- Imagen de Windows (DISM /RestoreHealth), archivos del sistema (sfc /scannow), disco, WMI.
+- Windows Update: servicios, permisos de BITS, almacen (renombrado, no borrado), AppData, hora.
+- Red: cache DNS y DHCP; avanzado: reinicio de Winsock y TCP/IP (exige reiniciar).
+- Servicios esenciales, impresion, sonido, dispositivos con error, busqueda.
+- Aplicaciones de la Tienda danadas, espacio en disco, Defender, UAC, SMB1.
+
+OPCIONES
+- Incluir analisis lentos: SFC, DISM completo y analisis del disco (de 10 a 40 minutos).
+- Crear punto de restauracion: activado por defecto (si la Proteccion del sistema esta apagada,
+  la activa para poder crearlo).
+- Permitir reparaciones avanzadas: red (Winsock/IP), SMB1, disco y servicios deshabilitados.
+
+COPIAS
+- Todo lo que se toca se copia en C:\Copias_ReparaWin11\<fecha>\<area>\ antes de cambiarlo.
+- Los informes y registros quedan en la carpeta Informes de la herramienta.
+
+REQUISITOS
+Windows 10/11 de 64 bits, Windows PowerShell 5.1 (viene con Windows). No hay que instalar nada.
+
+ARCHIVOS
+Iniciar_ReparaWin11.cmd  abre la herramienta como administrador
+ReparaWin11.ps1          ventana
+Nucleo.ps1               funciones comunes (registro, copias, punto de restauracion, informe)
+Modulos\                 un archivo por grupo de comprobaciones (Diagnosticar / Reparar)
+Esquivas\                scripts de esquiva probados en el laboratorio (10_Callejones)
